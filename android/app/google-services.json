@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "384161268308",
+    "firebase_url": "https://apna-scorecard-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "apna-scorecard",
+    "storage_bucket": "apna-scorecard.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384161268308:android:03a9cfe6a461485f95a3c1",
+        "android_client_info": {
+          "package_name": "com.example.apna_scorecard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdxBb1MSLOb7auS_GPIsLfywLtj_x_9Q0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
