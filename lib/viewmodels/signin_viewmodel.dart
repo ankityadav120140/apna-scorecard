@@ -8,9 +8,15 @@ class SignInViewModel extends ChangeNotifier {
   User? _user;
   User? get user => _user;
 
+  Future<void> checkUserOnStartup() async {
+    _user = _authService.currentUser;
+    if (_user != null) {
+      notifyListeners();
+    }
+  }
+
   Future<void> signInWithGoogle() async {
     try {
-      print('11111111111111111111111111');
       _user = await _authService.signInWithGoogle();
       notifyListeners();
     } catch (e) {

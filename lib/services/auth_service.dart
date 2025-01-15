@@ -7,9 +7,7 @@ class AuthService {
 
   Future<User?> signInWithGoogle() async {
     try {
-      print('222222222222222222222222222222222');
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      print('333333333333333333333333333333333');
       if (googleUser == null) {
         return null;
       }

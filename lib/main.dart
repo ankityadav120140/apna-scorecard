@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'utils/app_routes.dart';
 import 'viewmodels/signin_viewmodel.dart';
-import 'views/signin_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,14 +21,18 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => SignInViewModel()),
       ],
-      child: ResponsiveSizer(builder: (context, orientation, screenType) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Apna Scorecard',
-          theme: ThemeData(primarySwatch: Colors.deepPurple),
-          home: const SignInView(),
-        );
-      }),
+      child: ResponsiveSizer(
+        builder: (context, orientation, screenType) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Apna Scorecard',
+            theme: ThemeData(primarySwatch: Colors.deepPurple),
+            initialRoute: AppRoutes.initialRoute,
+            onGenerateRoute: AppRoutes.generateRoute,
+            builder: EasyLoading.init(),
+          );
+        },
+      ),
     );
   }
 }

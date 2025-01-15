@@ -1,7 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sign_in_button/sign_in_button.dart';
+import '../utils/app_theme.dart';
 import '../viewmodels/signin_viewmodel.dart';
 
 class SignInView extends StatelessWidget {
@@ -12,33 +16,26 @@ class SignInView extends StatelessWidget {
     final signInViewModel = Provider.of<SignInViewModel>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Sign In')),
+      appBar: AppBar(
+        title: Text(
+          'Log In',
+          style: TextStyle(color: AppColors.textPrimary),
+        ),
+        backgroundColor: AppColors.primaryLighter,
+      ),
+      backgroundColor: AppColors.primaryLightest,
       body: Center(
-        child: signInViewModel.isSignedIn
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Welcome, ${signInViewModel.user?.displayName ?? 'User'}!',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: signInViewModel.signOut,
-                    child: Text('Sign Out'),
-                  ),
-                ],
-              )
-            : SizedBox(
-                height: 7.h,
-                child: SignInButton(
-                  Buttons.google,
-                  onPressed: () async {
-                    print('000000000000000000000000');
-                    signInViewModel.signInWithGoogle();
-                  },
-                ),
-              ),
+        child: SizedBox(
+          height: 7.h,
+          child: SignInButton(
+            Buttons.google,
+            onPressed: () async {
+              EasyLoading.show();
+              await signInViewModel.signInWithGoogle();
+              EasyLoading.dismiss();
+            },
+          ),
+        ),
       ),
     );
   }
